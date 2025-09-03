@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Nitro Generator - TOTALLY LEGIT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #5865f2, #7289da);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: #2f3136;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+            animation: shine 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .discord-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #5865f2, #7289da);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ffd700, #ffed4a, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px #ffd700); }
+            to { filter: drop-shadow(0 0 20px #ffd700); }
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #b9bbbe;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            background: #36393f;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid #5865f2;
+        }
+
+        .feature-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .feature-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+        }
+
+        .feature-list li::before {
+            content: '✨';
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+
+        .generator-section {
+            background: #40444b;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #dcddde;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #5865f2;
+            border-radius: 8px;
+            background: #484c52;
+            color: #dcddde;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #7289da;
+            box-shadow: 0 0 10px rgba(114, 137, 218, 0.3);
+        }
+
+        .generate-btn {
+            background: linear-gradient(45deg, #5865f2, #7289da);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
+        }
+
+        .generate-btn:active {
+            transform: translateY(0);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #484c52;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #5865f2, #7289da, #5865f2);
+            width: 0%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
+        }
+
+        .result-box {
+            background: #36393f;
+            border: 2px solid #57f287;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .nitro-code {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5em;
+            color: #57f287;
+            background: #2f3136;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #57f287;
+            letter-spacing: 2px;
+        }
+
+        .warning {
+            background: #fee75c;
+            color: #000;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #57f287;
+            display: block;
+        }
+
+        .stat-label {
+            color: #b9bbbe;
+            font-size: 0.9em;
+        }
+
+        .testimonials {
+            background: #36393f;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 3px solid #5865f2;
+            background: #2f3136;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #484c52;
+            color: #72767d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="discord-logo">💎</div>
+            <h1 class="title">FREE NITRO GENERATOR</h1>
+            <p class="subtitle">Get Discord Nitro for FREE! 100% Working Method!</p>
+        </div>
+
+        <div class="warning">
+            ⚠️ LIMITED TIME: Only 247 codes left today! Hurry before they're gone!
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-number" id="usersCount">15,847</span>
+                <span class="stat-label">Happy Users</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="codesGenerated">89,234</span>
+                <span class="stat-label">Codes Generated</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">99.8%</span>
+                <span class="stat-label">Success Rate</span>
+            </div>
+        </div>
+
+        <div class="features">
+            <h3 style="margin-bottom: 20px; color: #ffd700;">🎯 What You Get:</h3>
+            <ul class="feature-list">
+                <li>Discord Nitro Classic (1 Year)</li>
+                <li>Custom Discord Tag</li>
+                <li>Animated Avatar & Emojis</li>
+                <li>HD Video & Screen Share</li>
+                <li>Server Boost Powers</li>
+                <li>Larger File Uploads (100MB)</li>
+            </ul>
+        </div>
+
+        <div class="generator-section">
+            <h3 style="margin-bottom: 20px;">🚀 Generate Your Code Now!</h3>
+            
+            <div class="input-group">
+                <label for="username">Discord Username:</label>
+                <input type="text" id="username" placeholder="Enter your Discord username" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <button class="generate-btn" onclick="generateCode()">
+                🎁 GENERATE FREE NITRO CODE 🎁
+            </button>
+
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="result-box" id="resultBox">
+                <h3 style="color: #57f287; margin-bottom: 15px;">🎉 SUCCESS! Your Nitro Code:</h3>
+                <div class="nitro-code" id="nitroCode">LOADING...</div>
+                <p style="color: #b9bbbe;">👆 Click the code above to copy and redeem! 👆</p>
+            </div>
+        </div>
+
+        <div class="testimonials">
+            <h3 style="margin-bottom: 15px; color: #ffd700;">💬 What Our Users Say:</h3>
+            <div class="testimonial">
+                <strong>GamerPro2024:</strong> "OMG it actually worked! Got my Nitro in 30 seconds! 😍"
+            </div>
+            <div class="testimonial">
+                <strong>DiscordKing:</strong> "Been using this for months, generated 5 codes for friends!"
+            </div>
+            <div class="testimonial">
+                <strong>NitroHunter:</strong> "Finally a generator that isn't fake! Thank you! 🙏"
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>⚠️ This is a PRANK website for entertainment purposes only! ⚠️</p>
+            <p>No real Discord Nitro codes are generated. Hope you enjoyed the show! 😄</p>
+            <p style="margin-top: 10px;">Always be careful of real scam sites - Discord Nitro can only be purchased officially!</p>
+        </div>
+    </div>
+
+    <script>
+        let codesGenerated = 89234;
+        let usersCount = 15847;
+
+        function updateStats() {
+            document.getElementById('codesGenerated').textContent = codesGenerated.toLocaleString();
+            document.getElementById('usersCount').textContent = usersCount.toLocaleString();
+        }
+
+        function generateCode() {
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            if (!username || !email) {
+                alert('Please fill in all fields to generate your FREE Nitro code! 🎁');
+                return;
+            }
+
+            // Show progress bar
+            const progressBar = document.getElementById('progressBar');
+            const progressFill = document.getElementById('progressFill');
+            const generateBtn = document.querySelector('.generate-btn');
+            const resultBox = document.getElementById('resultBox');
+
+            progressBar.style.display = 'block';
+            generateBtn.disabled = true;
+            generateBtn.textContent = '🔄 GENERATING...';
+            resultBox.style.display = 'none';
+
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 15 + 5;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(progressInterval);
+                    showResult();
+                }
+                progressFill.style.width = progress + '%';
+            }, 200);
+
+            // Update stats
+            codesGenerated++;
+            usersCount++;
+            updateStats();
+        }
+
+        function showResult() {
+            const resultBox = document.getElementById('resultBox');
+            const nitroCode = document.getElementById('nitroCode');
+            const generateBtn = document.querySelector('.generate-btn');
+
+            // Generate fake looking Nitro code
+            const fakeCode = generateFakeNitroCode();
+            nitroCode.textContent = fakeCode;
+
+            setTimeout(() => {
+                resultBox.style.display = 'block';
+                generateBtn.textContent = '✨ GENERATE ANOTHER CODE ✨';
+                generateBtn.disabled = false;
+            }, 1000);
+
+            // Auto-reveal prank after 10 seconds
+            setTimeout(() => {
+                alert('🎭 GOTCHA! This was just a prank! 😄\n\nNo real Nitro codes here - just wanted to give you a good laugh!\n\nRemember: Never trust "free Nitro generators" - they\'re always scams!\n\nOnly get Nitro from Discord officially! Stay safe! 💙');
+            }, 10000);
+        }
+
+        function generateFakeNitroCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = '';
+            
+            // Generate realistic looking Discord gift code format
+            for (let i = 0; i < 16; i++) {
+                if (i > 0 && i % 4 === 0) code += '-';
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            return 'https://discord.gift/' + code.replace(/-/g, '');
+        }
+
+        // Auto-increment stats periodically for realism
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                codesGenerated += Math.floor(Math.random() * 3) + 1;
+                usersCount += Math.floor(Math.random() * 2);
+                updateStats();
+            }
+        }, 5000);
+
+        // Initialize
+        updateStats();
+    </script>
+</body>
+</html>
